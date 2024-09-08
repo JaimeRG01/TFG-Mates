@@ -117,4 +117,5 @@ plot_curve(points2)
 #for i in range(3, 11) :
     #check_curve(i, "./Data/Iso/" , "iso")
     #check_curve(i, "./Data/Orig/", "orig")
-    #check_curve(i, "./Data/Opt/" ,  opt")
+    #check_curve(i, "./Data/Opt/" ,  "opt")
+    #check_curve(i, "./Data/Origopt/",  "origopt")

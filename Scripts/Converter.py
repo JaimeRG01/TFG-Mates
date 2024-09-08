@@ -1,12 +1,10 @@
-from Bezier import Bezier
-import matplotlib.pyplot as plt
 import numpy as np
-import matplotlib.animation as animation
 import scipy.integrate as integrate
 import math
 
-def read_points(id) :
-    fname = "iso" + str(id) + ".in"
+# Obtiene los puntos de un fichero (misma función que en Main)
+def read_points(id, path) :
+    fname = path + str(id) + ".in"
     f = open(fname, "r")
     p = int(f.readline())
     points = []
@@ -19,6 +17,7 @@ def read_points(id) :
     f.close()
     return points
 
+# Evalúa la derivada en t
 def eval_derivate(t, n, coords) :
     res = 0.0
     for i in range(n) :
@@ -27,6 +26,7 @@ def eval_derivate(t, n, coords) :
         res += ev
     return res
 
+# Evalúa bezier en t
 def eval_bezier(t, n, coords) :
     res = 0.0
     for i in range(n+1) :
@@ -34,6 +34,7 @@ def eval_bezier(t, n, coords) :
         res += b*coords[i]
     return res
 
+# Evalúa el integrando de sigma en t
 def sigma_integrand(t, n, points) :
     x = [p[0] for p in points]
     y = [p[1] for p in points]
@@ -41,6 +42,7 @@ def sigma_integrand(t, n, points) :
     d2 = eval_derivate(t, n, y)
     return math.sqrt(d1**2 + d2**2)
 
+# Evalúa el integrando de P en t
 def P_integrand(t, n, points) :
     x = [p[0] for p in points]
     y = [p[1] for p in points]
@@ -48,6 +50,7 @@ def P_integrand(t, n, points) :
     d2 = eval_bezier(t, n, y)
     return d1 * d2
 
+# Obtiene las áreas del fichero name
 def get_max_areas(name) :
     f = open(name, "r")
     lines = f.readlines()
@@ -59,13 +62,28 @@ def get_max_areas(name) :
     return res
 
 
-#areas = get_max_areas("eigenvalarea.in")
-areas = get_max_areas("eigenvalareaopti.in")
-l = 2*math.pi
-#g = open("maxareaoriginal.in", "w")
-g = open("maxareaoriginalopti.in", "w")
+
+
+####################################
+# UTILIZAR LA RUTA QUE SE NECESITE #
+####################################
+
+
+l = 2*math.pi # longitud
+
+
+# Si se quiere comprobar el algoritmo optimizado descomentar los ficheros opti y comentar los otros
+
+
+areas = get_max_areas("./Data/Solutions/eigenvalarea.in") 
+#areas = get_max_areas("./Data/Solutions/eigenvalareaopti.in")
+
+g = open("./Data/Solutions/maxareaoriginal.in", "w")
+#g = open("./Data/Solutions/maxareaoriginalopti.in", "w")
+
 for i in range(3, 41) :
-    points = read_points(i)
+    points = read_points(i, "./Data/Iso/iso")
+    #points = read_points(i, "./Data/Opt/opt")
     n = len(points)-1
     x = [p[0] for p in points]
     y = [p[1] for p in points]
@@ -73,7 +91,10 @@ for i in range(3, 41) :
     delta = (l**2) * areas[i-3] / (sigma**2)
     xx = [j * (l / sigma) for j in x]
     yy = [j * (l / sigma) for j in y]
-    f = open("orig" + str(i) + ".in", "w")
+
+    f = open("./Data/Orig/orig" + str(i) + ".in", "w+")
+    #f = open("./Data/Origopt/origopt" + str(i) + ".in", 'w+')
+
     f.write(str(n+1) + "\n")
     g.write(str(n) + " " + str(round(delta,10)) + "\n")
     for j in range(len(x)) :

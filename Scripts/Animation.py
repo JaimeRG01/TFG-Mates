@@ -7,8 +7,16 @@ plt.rcParams['figure.figsize'] = [5,5]
 fig, ax = plt.subplots()
 delta = 0.01
 
+# Tomar las curvas que se quieran
+# Cambiar también el nombre del gif
+
+#path = "Data/Iso/iso"
+#path = "Data/Orig/orig"
+#path = "Data/Opt/opt"
+path = "Data/Origopt/origopt"
+
 def animate(t) :
-    fname = "Data/Iso/iso" + str(t) + ".in"
+    fname = path + str(t) + ".in"
     f = open(fname, "r")
     n = int(f.readline())
     points = []
@@ -32,4 +40,7 @@ def animate(t) :
 limit = 25
 ani = animation.FuncAnimation(fig, animate, [i for i in range(4,limit)], init_func=animate(3), interval=100)
 plt.show()
-ani.save("./Isoperimetric.gif")
+#ani.save("./Iso.gif")
+#ani.save("./Orig.gif")
+#ani.save("./Opt.gif")
+ani.save("./Origopt.gif")

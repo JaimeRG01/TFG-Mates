@@ -15,9 +15,11 @@ def plot_curve(points, show = True, save = False, savename = "") :
     if save : plt.savefig("./Figuras/" + savename + str(len(points)) + ".png")
     if show : plt.show()
 
+
+
 # Devuelve los puntos de control de un fichero de ejemplo
-def read_test_points(id) :
-    fname = "./Data/Test/test" + str(id) + ".in"
+def read_points(id, path) :
+    fname = path + str(id) + ".in"
     f = open(fname, "r")
     p = int(f.readline())
     points = []
@@ -31,9 +33,15 @@ def read_test_points(id) :
     return points
 
 # Dibuja los ejemplos
-def print_examples() :
-    for id in range(1,10) :
-        points = read_test_points(id)
+def print_test_examples() :
+    for id in range(1,11) :
+        points = read_points(id, "./Data/Test/test")
+        plot_curve(points)
+
+# Dibuja los ejemplos generados aleatoriamente
+def print_random_examples() : 
+    for id in range(1,3) :
+        points = read_points(id, "./Data/Random/random")
         plot_curve(points)
 
 # Dibuja un ojo a partir de curvas de Bézier
@@ -92,15 +100,16 @@ def check_curve(n, path, name) :
 ###############################
 
 
-print_examples()
+print_test_examples()
+print_random_examples()
 
 print_dog()
 print_eye()
 
 
 # Contraejemplos
-points1 = read_test_points(11)
-points2 = read_test_points(12)
+points1 = read_points(11, "./Data/Test/test")
+points2 = read_points(12, "./Data/Test/test")
 plot_curve(points1)
 plot_curve(points2)
 

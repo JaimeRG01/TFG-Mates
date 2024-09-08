@@ -1,10 +1,6 @@
-# Para generar nubes de puntos aleatorias
-
 import random
-import numpy as np
-import matplotlib.pyplot as plt
 
-
+# Genera una nube de puntos aleatorios
 def generate_points(n, max, i) :
     points = []
     for _ in range(n) :

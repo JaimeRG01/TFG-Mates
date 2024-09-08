@@ -1,13 +1,10 @@
-from Bezier import Bezier
 import matplotlib.pyplot as plt
-import numpy as np
-import matplotlib.animation as animation
 import math
 
-
+# Dibuja la evolución del área optenida por los algotimos
 def plot_area(opti = False) :
-    if not opti : f = open("eigenvalarea.in", "r")
-    else    : f = open("eigenvalareaopti.in", "r")
+    if not opti : f = open("./Data/Solutions/eigenvalarea.in", "r")
+    else    : f = open("./Data/Solutions/eigenvalareaopti.in", "r")
     lines = f.readlines()
     x = []
     y = []
@@ -17,8 +14,8 @@ def plot_area(opti = False) :
         y.append(s[2])
     f.close()
 
-    if not opti : g = open("maxareaoriginal.in", "r")
-    else    : g = open("maxareaoriginalopti.in", "r")
+    if not opti : g = open("./Data/Solutions/maxareaoriginal.in", "r")
+    else    : g = open("./Data/Solutions/maxareaoriginalopti.in", "r")
     lines = g.readlines()
     t = []
     z = []

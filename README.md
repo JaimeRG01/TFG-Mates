@@ -1,5 +1,5 @@
  
-Este repositorio recoge los archivos utilizado durante la elaboración del Trabajo de Fin de Grado de Matemáticas. 
+Este repositorio recoge los archivos utilizados durante la elaboración del Trabajo de Fin de Grado de Matemáticas. 
 
 La carpeta `Scripts` contiene todos los ficheros fuente desarrollados a lo largo del proyecto. La carpeta `Data` contiene los datos de las curvas que han sido generadas, tanto las obtenidas por el algoritmo como las curvas de Bézier de ejemplo. La carpeta `Figuras` contiene las figuras que se incluyen en la memoria del trabajo. 
 
